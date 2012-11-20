@@ -16,8 +16,8 @@ namespace LogLibrary
             if (LogManager.GetCurrentLoggers().Length == 0)
             {
                 LoadConfig();
-                _log = new Log(LogManager.GetLogger(type));
             }
+            _log = new Log(LogManager.GetLogger(type));
             return _log;
         }
 
