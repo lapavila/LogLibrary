@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using log4net;
+﻿using log4net;
+using log4net.Core;
 
 namespace LogLibrary
 {
     public class Log
     {
-        private ILog _log;
+        private readonly ILog _log;
 
-        public Log(ILog _log)
+        public Log(ILog log)
         {
-            this._log = _log;
+            _log = log;
         }
 
         public void Fatal(string message)
@@ -70,7 +67,7 @@ namespace LogLibrary
             get { return _log.IsWarnEnabled; }
         }
 
-        public log4net.Core.ILogger Logger
+        public ILogger Logger
         {
             get { return _log.Logger; }
         }

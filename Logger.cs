@@ -2,7 +2,6 @@
 using System.IO;
 using log4net.Config;
 using log4net;
-using System.Reflection;
 using System.Configuration;
 
 namespace LogLibrary
@@ -23,18 +22,14 @@ namespace LogLibrary
 
         private static void LoadConfig()
         {
-            var log4NetConfigFilePath = LoadCustomtConfig();
-            if (log4NetConfigFilePath == null)
-            {
-                log4NetConfigFilePath = LoadDefaultConfig();
-            }
+            var log4NetConfigFilePath = LoadCustomtConfig() ?? LoadDefaultConfig();
 
             Configure(log4NetConfigFilePath);
         }
 
         private static string LoadDefaultConfig()
         {
-            var log4NetConfigDirectory = AppDomain.CurrentDomain.RelativeSearchPath ?? AppDomain.CurrentDomain.BaseDirectory;
+            var log4NetConfigDirectory = AppDomain.CurrentDomain.RelativeSearchPath;// ?? AppDomain.CurrentDomain.BaseDirectory;
             var log4NetConfigFilePath = Path.Combine(log4NetConfigDirectory, "Assets\\log4net.config");
             return log4NetConfigFilePath;
         }
